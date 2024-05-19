@@ -1,0 +1,15 @@
+{
+  "name": "2.0calculatorproject",
+  "version": "1.0.0",
+  "description": "This a calclator project build using node js and express js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Valentine",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
