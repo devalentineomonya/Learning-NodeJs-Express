@@ -1,5 +1,6 @@
 {
-  "name": "2.0calculatorproject",
+  "name": "2.0NodeServer",
+  "type":"module",  
   "version": "1.0.0",
   "description": "This a calclator project build using node js and express js",
   "main": "server.js",
