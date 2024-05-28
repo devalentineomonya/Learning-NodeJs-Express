@@ -26,7 +26,7 @@ const customersList = [
 ]
 
 app.get("/", (req, res) => {
-    console.log("Loogging");
+    console.log("Welcome to my api");
 })
 
 
