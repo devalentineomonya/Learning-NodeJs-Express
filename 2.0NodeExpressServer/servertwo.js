@@ -34,6 +34,11 @@ app.get("/customer", (req, res) => {
     res.json(customersList)
 })
 
+app.post("/customer", (req, res) => {
+    console.log(`This user submitted ${req.body}`);
+    res.send(req.body)
+})
+
 
 const port = process.env.PORT_NUMBER || 3000
 
