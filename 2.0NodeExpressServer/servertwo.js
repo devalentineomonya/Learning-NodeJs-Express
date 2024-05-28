@@ -40,7 +40,7 @@ app.get("/customer/:id", (req, res) => {
 
 })
 app.put("/customer/:id", (req, res) => {
-    res.send(`Deleted user with id : ${req.params.id}`)
+    res.send(`Updated user with id : ${req.params.id}`)
 })
 
 app.post("/customer", (req, res) => {
