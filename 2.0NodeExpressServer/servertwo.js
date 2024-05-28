@@ -33,19 +33,24 @@ app.get("/", (req, res) => {
 app.get("/customer", (req, res) => {
     res.json(customersList)
 })
-app.get("/customer/:id", (req, res) => {
-    console.log(req.params)
-    res.send(req.params)
-  
 
-})
-app.put("/customer/:id", (req, res) => {
-    res.send(`Updated user with id : ${req.params.id}`)
-})
+
 
 app.post("/customer", (req, res) => {
     console.log(`This user submitted ${req.body}`);
     res.send(req.body)
+})
+
+
+app.get("/customer/:id", (req, res) => {
+    console.log(req.params)
+    res.send(req.params)
+
+})
+
+
+app.put("/customer/:id", (req, res) => {
+    res.send(`Updated user with id : ${req.params.id}`)
 })
 
 
