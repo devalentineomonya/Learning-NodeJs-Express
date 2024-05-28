@@ -44,8 +44,8 @@ app.post("/customer", (req, res) => {
 
 app.get("/customer/:id", (req, res) => {
     console.log(req.params)
+    res.status(200)
     res.send(req.params)
-
 })
 
 
@@ -53,6 +53,9 @@ app.put("/customer/:id", (req, res) => {
     res.send(`Updated user with id : ${req.params.id}`)
 })
 
+app.delete("/customer/:id", (req, res) => {
+    res.send(`Deleted user with id : ${req.params.id}`)
+})
 
 const port = process.env.PORT_NUMBER || 3000
 
