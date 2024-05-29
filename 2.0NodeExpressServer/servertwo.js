@@ -65,11 +65,11 @@ app.delete("/customer/:id", (req, res) => {
 })
 
 const port = process.env.PORT_NUMBER || 3000
-
+const connectionString = process.env.CONNECTION_STRING || 'mongodb ://localhost:27017/'
 
 const start = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/');
+        await mongoose.connect(connectionString);
         app.listen(port, () => {
             console.log(`Node App running on port ${port}`);
         })
