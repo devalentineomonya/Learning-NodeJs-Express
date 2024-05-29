@@ -3,13 +3,13 @@ const app = express();
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 const CustomerModel = require('./src/models/customer')
- 
+
 
 // if(process.env.NODE_ENV !=== 'production'){
 //     require('dotenv').config()
 // }
- 
- 
+
+
 const customersList = [
 
     {
@@ -42,14 +42,21 @@ app.get("/", (req, res) => {
 })
 
 const customer = new CustomerModel({
-    name:"valentine",
-    industry:"Coding anf programming"
+    name: 'Customer5',
+    city: 'Nairobi'
 })
 
+// customer.save( )
 
-  
-app.get("/customer", (req, res) => {
-    res.json(customersList)
+app.get("/customer", async (req, res) => {
+    try {
+        const result = await CustomerModel.find()
+        res.send(result)
+
+    } catch (error) {
+        res.send(`Message: ${error.message}`)
+        res.status(500).json({ message: "Internal server error" })
+    }
 })
 
 
@@ -76,7 +83,7 @@ app.delete("/customer/:id", (req, res) => {
 })
 
 const port = process.env.PORT_NUMBER || 3000
-const connectionString = process.env.CONNECTION_STRING || 'mongodb://localhost:27017/'
+const connectionString = process.env.CONNECTION_STRING || 'mongodb://localhost:27017/customers'
 
 const start = async () => {
     try {
@@ -89,7 +96,7 @@ const start = async () => {
         console.log(error.message);
     }
 }
- 
+
 start()
 
 
