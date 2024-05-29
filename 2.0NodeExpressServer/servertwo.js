@@ -2,9 +2,13 @@ const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
+ 
 
-
-
+// if(process.env.NODE_ENV !=== 'production'){
+//     require('dotenv').config()
+// }
+ 
+ 
 const customersList = [
 
     {
@@ -65,7 +69,7 @@ app.delete("/customer/:id", (req, res) => {
 })
 
 const port = process.env.PORT_NUMBER || 3000
-const connectionString = process.env.CONNECTION_STRING || 'mongodb ://localhost:27017/'
+const connectionString = process.env.CONNECTION_STRING || 'mongodb://localhost:27017/'
 
 const start = async () => {
     try {
