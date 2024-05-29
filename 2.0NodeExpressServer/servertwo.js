@@ -47,6 +47,10 @@ const customer = new CustomerModel({
 })
 
 // customer.save( )
+app.get("/models", async (req, res) => {
+    const models = await mongoose.connection.db.listCollections().toArray()
+    res.send(models)
+})
 
 app.get("/customer", async (req, res) => {
     try {
@@ -61,9 +65,16 @@ app.get("/customer", async (req, res) => {
 
 
 
-app.post("/customer", (req, res) => {
-    console.log(`This user submitted ${req.body}`);
-    res.send(req.body)
+app.post("/customer", async (req, res) => {
+    try {
+        const newCustomer = new CustomerModel(res.body) 
+        await newCustomer.save()
+        res.status(201).send(`${res.body.name} Added to db successfully`);
+
+    } catch (error) {
+        res.status(500).send("Server responded with error 500")
+
+    }
 })
 
 
