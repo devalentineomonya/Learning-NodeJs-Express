@@ -77,17 +77,29 @@ app.post("/customer", async (req, res) => {
 })
 
 
-app.get("/customer/:id", (req, res) => {
-    console.log(req.params)
-    res.status(200)
-    res.send(req.params)
+app.get("/customer/:id", async (req, res) => {
+    try {
+        const customer = await CustomerModel.findById(req.params.id)
+        if (!customer) {
+            res.status(404).json({ message: "Customer not found" })
+            return
+        }
+        res.status(200)
+        res.send(customer)
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+
+    }
 })
 
 
-app.put("/customer/:id", (req, res) => {
+app.put("/customer/:id", async (req, res) => {
+    const customerId = req.params.id
+    await CustomerModel.replaceOne({ _id: customerId }, req.body)
     res.send(`Updated user with id : ${req.params.id}`)
 })
-
+ 
 app.delete("/customer/:id", (req, res) => {
     res.send(`Deleted user with id : ${req.params.id}`)
 })
