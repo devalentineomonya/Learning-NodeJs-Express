@@ -71,7 +71,7 @@ app.post("/customer", async (req, res) => {
         res.status(201).send(`${res.body.name} Added to db successfully`);
 
     } catch (error) {
-        res.status(500).send(`Server responded with error ${error.message}`)
+        res.status(400).send(`Server responded with error ${error.message}`)
 
     }
 })
