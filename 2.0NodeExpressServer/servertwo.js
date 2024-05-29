@@ -1,6 +1,10 @@
-const { urlencoded } = require('express');
+const express = require('express')
+const app = express();   
+const mongoose = require('mongoose')
+mongoose.set('strictQuery',false)
 
-const app = require('express')();
+
+
 const customersList = [
 
     {
@@ -24,9 +28,12 @@ const customersList = [
         city: 'Paris'
     }
 ]
+// app.use(express.json());
+// app.use(express.urlencoded({extended: true}))
 
 app.get("/", (req, res) => {
     console.log("Welcome to my api");
+    res.send("<h2>Welcome to my api</h2>")
 })
 
 
@@ -59,6 +66,20 @@ app.delete("/customer/:id", (req, res) => {
 
 const port = process.env.PORT_NUMBER || 3000
 
+
+const start = async() =>{
+    await mongoose.connect('mongodb://localhost:27017/'); 
+} 
+
 app.listen(port, () => {
     console.log(`Node App running on port ${port}`);
-})     
+}) 
+
+
+start() 
+
+
+ 
+  
+
+
