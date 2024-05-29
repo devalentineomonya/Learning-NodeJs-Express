@@ -95,14 +95,28 @@ app.get("/customer/:id", async (req, res) => {
 
 
 app.put("/customer/:id", async (req, res) => {
-    const customerId = req.params.id
-    await CustomerModel.replaceOne({ _id: customerId }, req.body)
-    res.send(`Updated user with id : ${req.params.id}`)
+    try {
+        const customerId = req.params.id
+        await CustomerModel.replaceOne({ _id: customerId }, req.body)
+        res.send(`Updated user with id : ${req.params.id}`)
+
+    } catch (error) {
+        res.send(error.message)
+    }
 })
- 
-app.delete("/customer/:id", (req, res) => {
-    res.send(`Deleted user with id : ${req.params.id}`)
+
+app.delete("/customer/:id", async (req, res) => {
+    try {
+        const customerId = req.params.id
+        await CustomerModel.deleteOne({ _id: customerId })
+        res.send(`Deleted user with id : ${req.params.id}`)
+
+    } catch (error) {
+        res.send(error.message)
+    }
 })
+
+
 
 const port = process.env.PORT_NUMBER || 3000
 const connectionString = process.env.CONNECTION_STRING || 'mongodb://localhost:27017/customers'
