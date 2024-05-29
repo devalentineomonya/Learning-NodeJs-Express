@@ -69,7 +69,6 @@ app.post("/customer", async (req, res) => {
         const newCustomer = new CustomerModel(res.body)
         await newCustomer.save()
         res.status(201).send(`${res.body.name} Added to db successfully`);
-
     } catch (error) {
         res.status(400).send(`Server responded with error ${error.message}`)
 
@@ -86,7 +85,6 @@ app.get("/customer/:id", async (req, res) => {
         }
         res.status(200)
         res.send(customer)
-
     } catch (error) {
         res.status(400).json({ error: error.message })
 
@@ -99,7 +97,6 @@ app.put("/customer/:id", async (req, res) => {
         const customerId = req.params.id
         await CustomerModel.replaceOne({ _id: customerId }, req.body)
         res.send(`Updated user with id : ${req.params.id}`)
-
     } catch (error) {
         res.send(error.message)
     }
@@ -110,7 +107,6 @@ app.delete("/customer/:id", async (req, res) => {
         const customerId = req.params.id
         await CustomerModel.deleteOne({ _id: customerId })
         res.send(`Deleted user with id : ${req.params.id}`)
-
     } catch (error) {
         res.send(error.message)
     }
