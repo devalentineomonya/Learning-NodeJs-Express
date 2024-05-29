@@ -58,8 +58,7 @@ app.get("/customer", async (req, res) => {
         res.send(result)
 
     } catch (error) {
-        res.send(`Message: ${error.message}`)
-        res.status(500).json({ message: "Internal server error" })
+        res.status(500).json({ message: `Server responded with error ${error.message}` })
     }
 })
 
@@ -67,12 +66,12 @@ app.get("/customer", async (req, res) => {
 
 app.post("/customer", async (req, res) => {
     try {
-        const newCustomer = new CustomerModel(res.body) 
+        const newCustomer = new CustomerModel(res.body)
         await newCustomer.save()
         res.status(201).send(`${res.body.name} Added to db successfully`);
 
     } catch (error) {
-        res.status(500).send("Server responded with error 500")
+        res.status(500).send(`Server responded with error ${error.message}`)
 
     }
 })
