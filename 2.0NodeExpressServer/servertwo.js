@@ -1,7 +1,7 @@
 const express = require('express')
-const app = express();   
+const app = express();
 const mongoose = require('mongoose')
-mongoose.set('strictQuery',false)
+mongoose.set('strictQuery', false)
 
 
 
@@ -67,19 +67,22 @@ app.delete("/customer/:id", (req, res) => {
 const port = process.env.PORT_NUMBER || 3000
 
 
-const start = async() =>{
-    await mongoose.connect('mongodb://localhost:27017/'); 
-} 
+const start = async () => {
+    try {
+        await mongoose.connect('mongodb://localhost:27017/');
+        app.listen(port, () => {
+            console.log(`Node App running on port ${port}`);
+        })
 
-app.listen(port, () => {
-    console.log(`Node App running on port ${port}`);
-}) 
-
-
-start() 
-
-
+    } catch (error) {
+        console.log(error.message);
+    }
+}
  
-  
+start()
+
+
+
+
 
 
