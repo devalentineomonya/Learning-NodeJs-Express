@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
+const CustomerModel = require('./src/models/customer')
  
 
 // if(process.env.NODE_ENV !=== 'production'){
@@ -40,7 +41,13 @@ app.get("/", (req, res) => {
     res.send("<h2>Welcome to my api</h2>")
 })
 
+const customer = new CustomerModel({
+    name:"valentine",
+    industry:"Coding anf programming"
+})
 
+
+  
 app.get("/customer", (req, res) => {
     res.json(customersList)
 })
