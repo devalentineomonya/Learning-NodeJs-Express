@@ -48,10 +48,17 @@ app.get("/", (req, res) => {
 
 const customer = new CustomerModel({
     name: 'Customer5',
-    city: 'Nairobi'
+    city: 'Nairobi',
+    orders: [
+        {
+            name: "Macbook",
+            description: "HJDolor eu cillum quis proident ea. Velit fugiat voluptate Lorem commodo et magna sunt sint incididunt sunt. Voluptate in exercitation id incididunt nostrud elit commodo officia culpa deserunt ad ullamco. Ut enim nisi dolor tempor mollit nisi cillum minim. Ipsum labore anim quis tempor velit sint aliqua consequat ullamco. Labore veniam esse ex enim labore quis elit et consectetur. Anim cillum id tempor eu.",
+            priceInCents: 1234
+        }
+    ]
 })
 
-// customer.save( )
+customer.save()
 app.get("/models", async (req, res) => {
     const models = await mongoose.connection.db.listCollections().toArray()
     res.send(models)

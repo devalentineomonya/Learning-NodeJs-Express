@@ -5,6 +5,13 @@ const customerSchema = new mongoose.Schema({
         required: true,
     },
     city: String,
+    orders: [
+        {
+            name: String,
+            description: String,
+            priceInCents: Number
+        }
+    ]
 })
 
 module.exports = mongoose.model("Customer", customerSchema)
