@@ -1,13 +1,17 @@
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
+const dotenv = require('dotenv');
+// const cors = require('cors');
+
+dotenv.config()
+
 mongoose.set('strictQuery', false)
 const CustomerModel = require('./src/models/customer')
 
-
-// if(process.env.NODE_ENV !=== 'production'){
-//     require('dotenv').config()
-// }
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 
 
 const customersList = [
@@ -33,8 +37,9 @@ const customersList = [
         city: 'Paris'
     }
 ]
-// app.use(express.json());
-// app.use(express.urlencoded({extended: true}))
+// app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
     console.log("Welcome to my api");
